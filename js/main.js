@@ -393,21 +393,18 @@ console.log(countLetterA(user.name + javaScript.html));
 
 function reverseEachWord(sentence,addRevert) {
   let arr = [],
-      temp = [];
+    temp = [];
   arr = sentence.split(' ');
-  for(let i = 0; i < arr.length; i++){
-     temp = arr[i].split('');
-     temp = temp.reverse();
-     arr[i] = temp.join('');
-  }
-  if (addRevert === true){
-    return arr.reverse().join(' ');
-  }
-  else
-  {
-  return arr.join(' ');
-  }
-
+    for(let i = 0; i < arr.length; i++){
+      temp = arr[i].split('');
+      temp = temp.reverse();
+      arr[i] = temp.join('');
+    }
+    if (addRevert === true){
+      return arr.reverse().join(' ');
+    } else {
+      return arr.join(' ');
+    }
 }
 
 console.log(reverseEachWord('You don\'t have to do anything special to begin using the DOM. Different browsers have different implementations of the DOM', true));
@@ -476,8 +473,8 @@ console.log(createHashTags(listOfCompanys));
 
 function uniqueElements(arr) {
   let arr1=[];
-  return arr1= arr.filter(function(element,index){
-    return arr.indexOf(element) === index;
+    return arr1 = arr.filter(function(element,index){
+      return arr.indexOf(element) === index;
   });
 }
 
