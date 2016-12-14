@@ -324,15 +324,13 @@ let megaObject = {
 
 // Если функция получает массив, тогда отобразите все имена в массиве, если объект, тогда просто имя
 function showInConsole(data) {
-    if(data.constructor === Array){
+  if(Array.isArray(data)){
     console.log(data.map(function(element){
-        return element.name
+      return element.name
     })
-)}
-    else
-    {
-  console.log(data.name);
-    }
+  )} else {
+      console.log(data.name);
+  }
 }
 showInConsole(listOfCompanys);
 showInConsole(megaObject);
@@ -357,23 +355,21 @@ let javaScript = {
 
 function countLetterA(data) {
   let aCounter = 0,
-      property,
-      a = 'a'
+    a = 'a';
 if (typeof data == 'object'){
   for(let key in data){
-     property = data[key];
-     for (let i = 0; i < property.length; i++){
+    property = data[key];
+    for (let i = 0; i < property.length; i++){
       if (property[i] === a)
         aCounter++;
      }
   }
-}
-else {
-  for (let i = 0; i < data.length; i++){
-    if (data[i] === a){
-      aCounter++;
+} else {
+    for (let i = 0; i < data.length; i++){
+      if (data[i] === a){
+        aCounter++;
+      }
     }
-  }
 }
 return aCounter;
 }
@@ -394,11 +390,10 @@ console.log(countLetterA(user.name + javaScript.html));
 * данный параметр булево, если true - тогда слова так же переворачиваются в обратном порядке
 * */
 
-let arr = [];
-let temp = [];
 
 function reverseEachWord(sentence,addRevert) {
-  //debugger
+  let arr = [],
+      temp = [];
   arr = sentence.split(' ');
   for(let i = 0; i < arr.length; i++){
      temp = arr[i].split('');
@@ -430,27 +425,19 @@ console.log(reverseEachWord('The Document Object Model (DOM) is a programming in
 
 
 function wordCounter(sentence) {
-    let arr1 = [],
+  let arr1 = [],
     myObj = {};
-    arr1 = sentence.split(' ');
-    for (let i = 0; i < arr.length;i++){
-      let numberOfWords = 1;
-      if (!arr1[i]) {
-      continue
-      }
-      else
-      {
-        myObj[arr1[i]] = numberOfWords;
-        for (let j = i+1; j < arr1.length;){
-          if (arr1[i] === arr1[j]) {
-          myObj[arr1[i]] = ++numberOfWords;
-          delete arr1[j];
-          }
-          j++;
-        }
+
+  arr1 = sentence.split(' ');
+  myObj[arr1[0]] = 1;
+    for (let i = 1; i < arr1.length;i++){
+      if(myObj[arr1[i]]){
+        myObj[arr1[i]]+=1;
+      } else {
+        myObj[arr1[i]] = 1;
       }
     }
-   return myObj;
+    return myObj;
 }
 
 console.log(wordCounter('Both Java and Java Script is programming and programming OOPBased Language'));
@@ -465,10 +452,10 @@ console.log(wordCounter('url http url www url http'));
 
 function createHashTags(arr) {
   let myNewObj = {};
-  for (let i = 0; i < arr.length; i++){
+    for (let i = 0; i < arr.length; i++){
       myNewObj[arr[i]._id] = arr[i].company;
-  }
-  return myNewObj;
+    }
+    return myNewObj;
 }
 
 console.log(createHashTags(listOfCompanys));
@@ -488,26 +475,15 @@ console.log(createHashTags(listOfCompanys));
 
 
 function uniqueElements(arr) {
-  let myArr = [];
-  for(let i = 0; i < arr.length-1;i++){
-    for(let j = i+1; j < arr.length; j++){
-      if(arr[i] === arr[j]){
-        arr[j] = false;
-      }
-    }
-}
-   myArr = arr.filter(function(el){
-    return el !== false ;
-  })
-   return myArr.join(', ')
+  let arr1=[];
+  return arr1= arr.filter(function(element,index){
+    return arr.indexOf(element) === index;
+  });
 }
 
 let notUniqArray = [1, 1, 2, 2, 2, 5, 10, 25, 30, 5, 1, 0, 22, 3, 10, 3];
 console.log(uniqueElements(notUniqArray)); //1,2,5,10,25,30,0,22,3,
 console.log(uniqueElements([1,1,2,3])); // 1,2,3
-
-
-
 
 
 //Variant 2
@@ -539,13 +515,11 @@ console.log(uniqueElements([1,1,2,3])); // 1,2,3
 function solution(arr) {
   let myNewArray = [];
     for(let i = 0; i < arr.length-1;i++){
-    if(arr[i] !== false){
-      myNewArray.push(arr[i]);
-    }
-    else
-    {
-    continue
-    }
+      if(arr[i] !== false){
+        myNewArray.push(arr[i]);
+      } else {
+          continue
+      }
       for(let j = i+1; j < arr.length; j++){
         if(arr[i] === arr[j]){
           myNewArray.push(arr[j]);
